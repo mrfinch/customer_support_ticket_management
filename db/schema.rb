@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170813124749) do
+ActiveRecord::Schema.define(version: 20170813133750) do
+
+  create_table "ticket_statuses", force: :cascade do |t|
+    t.integer  "status",      limit: 4
+    t.integer  "user_id",     limit: 4
+    t.text     "information", limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ticket_statuses", ["status"], name: "index_ticket_statuses_on_status", using: :btree
+  add_index "ticket_statuses", ["user_id"], name: "index_ticket_statuses_on_user_id", using: :btree
 
   create_table "tickets", force: :cascade do |t|
     t.string   "name",        limit: 191
