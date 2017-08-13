@@ -17,4 +17,5 @@
 //= require react_ujs
 //= require components
 //= require bootstrap-sprockets
+//= require react_rails_modal
 //= require_tree .
