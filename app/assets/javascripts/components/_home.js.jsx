@@ -3,6 +3,7 @@ class Home extends React.Component {
     return (
       <div>
         <TopNav />
+        <HomeBody />
       </div>
     )
   }
