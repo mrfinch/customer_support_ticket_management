@@ -3,6 +3,7 @@ class Tickets extends React.Component {
     return (
       <div>
         <TicketsTopNav />
+        <TicketsMainView />
       </div>
     )
   }
