@@ -56,4 +56,6 @@ Rails.application.routes.draw do
 
   resources :tickets, only: [:index]
   root 'home#index'
+
+  match '*path' => redirect('/') , via: [:get]
 end
