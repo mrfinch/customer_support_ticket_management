@@ -50,3 +50,5 @@ gem 'react-rails', '2.2.1'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'react_rails_modal', '0.1.3'
+
+gem 'mysql2', '0.4.9'
