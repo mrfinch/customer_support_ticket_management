@@ -54,5 +54,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+  resources :tickets, only: [:index]
   root 'home#index'
 end
