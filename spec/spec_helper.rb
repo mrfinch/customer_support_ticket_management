@@ -108,4 +108,6 @@ RSpec.configure do |config|
   # Use the specified formatter, displays which tests are being run
   config.formatter = :documentation
 
+  config.include FactoryGirl::Syntax::Methods
+
 end

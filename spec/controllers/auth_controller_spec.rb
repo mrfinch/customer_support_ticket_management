@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe AuthController, type: :controller do
 
+  let(:user) { create(:r_user) }
+
   context '#signup' do
 
     it 'checks user is created on signup' do
