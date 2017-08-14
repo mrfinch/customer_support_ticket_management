@@ -1,7 +1,16 @@
 class AuthController < ApplicationController
 
-  def signup
+  before_filter :has_valid_signup_params?, only: [:signup]
+  before_filter :does_user_exists?, only: [:signup]
 
+  def signup
+    user = User.new(email: params[:email], password: params[:password], name: params[:name])
+
+    if user.save
+      render json: { status: true, message: 'Success' }
+    else
+      render json: { status: true, message: user.errors.full_messages }, status: 400
+    end
   end
 
   def login
@@ -10,6 +19,36 @@ class AuthController < ApplicationController
 
   def logout
 
+  end
+
+  private
+
+  def signup_params
+    params.permit(:name, :email, :password)
+  end
+
+  def has_valid_signup_params?
+    blank_model = if params[:email].blank?
+                    'email'
+                  elsif params[:name].blank?
+                    'name'
+                  elsif params[:password].blank?
+                    'password'
+                  else
+                    nil
+                  end
+
+    if blank_model.present?
+      render json: { status: false, message: "#{blank_model} is empty" }, status: 400
+    end
+  end
+
+  def does_user_exists?
+    user = User.find_by_email(params[:email])
+
+    if user.present?
+      render json: { status: false, message: 'User already exists, try to login' }, status: 400
+    end
   end
 
 end

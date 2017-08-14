@@ -57,7 +57,7 @@ Rails.application.routes.draw do
 
   resources :tickets, only: [:index]
 
-  resource :auth, only: [] do
+  resource :auth, controller: :auth, only: [] do
     post :signup
     post :login
     delete :logout

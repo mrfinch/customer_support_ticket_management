@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.4'
 end
 
 group :development do
@@ -54,3 +55,7 @@ gem 'react_rails_modal', '0.1.3'
 gem 'mysql2', '0.4.9'
 
 gem 'devise', '4.3.0'
+
+group :test do
+  gem 'database_cleaner'
+end
