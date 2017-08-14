@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814032933) do
+ActiveRecord::Schema.define(version: 20170814165706) do
 
   create_table "ticket_statuses", force: :cascade do |t|
     t.integer  "status",      limit: 4
@@ -25,18 +25,20 @@ ActiveRecord::Schema.define(version: 20170814032933) do
   add_index "ticket_statuses", ["user_id"], name: "index_ticket_statuses_on_user_id", using: :btree
 
   create_table "tickets", force: :cascade do |t|
-    t.string   "name",        limit: 191
-    t.text     "description", limit: 65535
+    t.string   "name",           limit: 191
+    t.text     "description",    limit: 65535
     t.datetime "resolve_eta"
-    t.integer  "type",        limit: 4
-    t.integer  "user_id",     limit: 4,     null: false
+    t.integer  "ticket_type",    limit: 4
+    t.integer  "user_id",        limit: 4,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "current_status", limit: 4,     null: false
   end
 
+  add_index "tickets", ["current_status"], name: "index_tickets_on_current_status", using: :btree
   add_index "tickets", ["name"], name: "index_tickets_on_name", using: :btree
   add_index "tickets", ["resolve_eta"], name: "index_tickets_on_resolve_eta", using: :btree
-  add_index "tickets", ["type"], name: "index_tickets_on_type", using: :btree
+  add_index "tickets", ["ticket_type"], name: "index_tickets_on_ticket_type", using: :btree
   add_index "tickets", ["updated_at"], name: "index_tickets_on_updated_at", using: :btree
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id", using: :btree
 

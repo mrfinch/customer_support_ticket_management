@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 FactoryGirl.define do
 
   sequence :r_user_email do |n|

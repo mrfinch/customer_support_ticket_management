@@ -14,7 +14,7 @@ class LoginForm extends React.Component {
         console.log(response);
         this.$('.error').html('');
         this.$('.success').html('Login Successful');
-        window.location.href = "/tickets";
+        window.location.href = "/support";
       },
       error: (resp) => {
         console.log(resp);

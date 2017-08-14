@@ -1,5 +1,7 @@
 class TicketsTopNav extends React.Component {
   render () {
+    console.log(this.props);
+    console.log(this.state);
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -12,6 +14,7 @@ class TicketsTopNav extends React.Component {
               <li><a href="#">Resolved Tickets</a></li>
             </ul>
             <div className="nav navbar-nav navbar-right msR">
+            <button type="submit" className="btn btn-success navbar-btn msR" onClick={this.props.onOpenTicket}>Open ticket</button>
               <ul className="nav navbar-nav navbar-right">
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span className="glyphicon glyphicon-user"></span><span className="caret"></span></a>

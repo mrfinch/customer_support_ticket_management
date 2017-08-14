@@ -55,7 +55,9 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :tickets, only: [:index]
+  resources :support, only: [:index]
+
+  resources :ticket
 
   resource :auth, controller: :auth, only: [] do
     post :signup
