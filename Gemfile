@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -52,3 +52,5 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'react_rails_modal', '0.1.3'
 
 gem 'mysql2', '0.4.9'
+
+gem 'devise', '4.3.0'

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -55,6 +56,13 @@ Rails.application.routes.draw do
   #   end
 
   resources :tickets, only: [:index]
+
+  resource :auth, only: [] do
+    post :signup
+    post :login
+    delete :logout
+  end
+
   root 'home#index'
 
   match '*path' => redirect('/') , via: [:get]
