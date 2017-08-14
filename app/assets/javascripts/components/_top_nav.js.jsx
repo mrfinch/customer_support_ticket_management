@@ -30,7 +30,7 @@ class TopNav extends React.Component {
   render () {
     return (
       <div>
-        <nav className="navbar navbar-default">
+        <div className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
               <a className="navbar-brand" href="#">Tech Support</a>
@@ -40,54 +40,19 @@ class TopNav extends React.Component {
               <button type="button" className="btn btn-success navbar-btn msR" onClick={this.openLoginModal}>Log In</button>
             </div>
           </div>
-        </nav>
+        </div>
         <ModalComponent
           isOpen={this.state.isLoginModalOpen}
-          onCloseRequest={this.closeLoginModal}
           modalClass='loginSignupModalClass'
         >
-          <form>
-            <div className="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" className="form-control" placeholder="Email" />
-            </div>
-            <div className="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" className="form-control" placeholder="Password" />
-            </div>
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" /> Remember me
-              </label>
-            </div>
-            <button type="submit" className="btn btn-default">Log In</button>
-          </form>
+          <LoginForm closeModal={this.closeLoginModal.bind(this)} />
         </ModalComponent>
 
         <ModalComponent
           isOpen={this.state.isSignupModalOpen}
-          onCloseRequest={this.closeSignupModal}
           modalClass='loginSignupModalClass'
         >
-          <form>
-            <div className="form-group">
-              <label for="exampleInputEmail1">Name</label>
-              <input type="email" className="form-control" placeholder="Name" />
-            </div>
-            <div className="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" className="form-control" placeholder="Email" />
-            </div>
-            <div className="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" className="form-control" placeholder="Password" />
-            </div>
-            <div className="form-group">
-              <label for="exampleInputPassword2">Confirm Password</label>
-              <input type="password" className="form-control" placeholder="Confirm Password" />
-            </div>
-            <button type="submit" className="btn btn-default">Sign up</button>
-          </form>
+          <SignupForm closeModal={this.closeSignupModal.bind(this)} />
         </ModalComponent>
       </div>
     )

@@ -19,6 +19,8 @@ class AuthController < ApplicationController
     failed = false
     if user.present?
       if user.valid_password?(login_params[:password])
+        # check why it redirects to 401 if not confirmed
+        # add remember me option
         sign_in(:user, user)
       else
         failed = true
@@ -49,7 +51,7 @@ class AuthController < ApplicationController
   end
 
   def login_params
-    params.permit(:email, :password)
+    params.permit(:email, :password, :remember_me)
   end
 
   def has_valid_signup_params?
