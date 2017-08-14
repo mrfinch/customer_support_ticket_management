@@ -10,7 +10,7 @@ describe TicketController, type: :controller do
       sign_in(user)
 
       name = 'Website broken'
-      post :create, name: name, description: 'It does not work on IE', type: 'bug'
+      post :create, name: name, description: 'It does not work on IE', type: Ticket::BUG_TYPE
 
       expect(response.status).to eq 200
       expect(Ticket.last.name).to eq name

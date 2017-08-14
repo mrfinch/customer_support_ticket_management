@@ -1,7 +1,9 @@
 class TicketsTopNav extends React.Component {
   render () {
     console.log(this.props);
-    console.log(this.state);
+    let showForm = this.props.openTicket;
+    let pending = !showForm ? (this.props.showPendingTickets ? 'active' : '') : ''
+    let resolved = !showForm ? (this.props.showPendingTickets ? '' : 'active') : ''
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -10,8 +12,8 @@ class TicketsTopNav extends React.Component {
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav">
-              <li><a href="#">Pending Tickets</a></li>
-              <li><a href="#">Resolved Tickets</a></li>
+              <li className={pending} onClick={this.props.setPendingTicket}><a href="#">Pending Tickets</a></li>
+              <li className={resolved} onClick={this.props.setResolvedTicket}><a href="#">Resolved Tickets</a></li>
             </ul>
             <div className="nav navbar-nav navbar-right msR">
             <button type="submit" className="btn btn-success navbar-btn msR" onClick={this.props.onOpenTicket}>Open ticket</button>

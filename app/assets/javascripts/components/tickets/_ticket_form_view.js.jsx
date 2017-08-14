@@ -15,6 +15,7 @@ class TicketFormView extends React.Component {
         console.log(response);
         this.$('.error').html('');
         this.$('.success').html('Ticket created successfully');
+        window.location.href = "/support";
       },
       error: (resp) => {
         console.log(resp);
@@ -38,10 +39,10 @@ class TicketFormView extends React.Component {
           <label for="exampleInputEmail1">Issue type</label>
           <br />
           <label className="radio-inline">
-            <input type="radio" name="inlineRadioOptions" value="bug" /> Bug
+            <input type="radio" name="inlineRadioOptions" value="0" /> Bug
           </label>
           <label className="radio-inline">
-            <input type="radio" name="inlineRadioOptions" value="feature" /> Feature Request
+            <input type="radio" name="inlineRadioOptions" value="1" /> Feature Request
           </label>
         </div>
         <div className="form-group">
