@@ -14,6 +14,11 @@ FactoryGirl.define do
     email { generate(:r_user_email) }
     password 'password'
     name { generate(:r_user_name) }
+
+    after(:create) do |user|
+      # this is needed because devise wont allow to login without confirming
+      user.confirm
+    end
   end
 
 end
