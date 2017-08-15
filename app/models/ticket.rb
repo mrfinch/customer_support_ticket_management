@@ -17,6 +17,7 @@ class Ticket < ActiveRecord::Base
   RESOLVED = [REQUEST_ACCEPTED, REQUEST_DECLINED, REQUEST_RESOLVED]
 
   belongs_to :user
+  has_many :ticket_statuses, foreign_key: :ticket_id
 
   def self.readable_types data
     data.map do |d|
@@ -24,6 +25,12 @@ class Ticket < ActiveRecord::Base
       d[:type] = TYPE_MAPPING[d['ticket_type'].to_s]
       d
     end
+  end
+
+  def add_to_status_list(status: , user:)
+    new_status = TicketStatus.new(ticket_id: self.id, status: status)
+    new_status.user = user
+    new_status.save
   end
 
 end

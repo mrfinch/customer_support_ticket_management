@@ -26,6 +26,8 @@ class Tickets extends React.Component {
   }
   render() {
     console.log(this.state);
+    console.log(this.props);
+    let currentUser = this.props.currentUser
     return (
       <div>
         <TicketsTopNav
@@ -34,8 +36,13 @@ class Tickets extends React.Component {
           showPendingTickets={this.state.showPendingTickets}
           setPendingTicket={this.setPendingTicket.bind(this)}
           setResolvedTicket={this.setResolvedTicket.bind(this)}
+          currentUser={currentUser}
         />
-        <TicketsMainView showTicketForm={this.state.openTicket} showPending={this.state.showPendingTickets} />
+        <TicketsMainView
+          showTicketForm={this.state.openTicket}
+          showPending={this.state.showPendingTickets}
+          currentUser={currentUser}
+        />
       </div>
     )
   }

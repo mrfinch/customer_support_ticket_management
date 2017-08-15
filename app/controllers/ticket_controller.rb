@@ -20,9 +20,27 @@ class TicketController < ApplicationController
     ticket.user = current_user
 
     if ticket.save
+      ticket.add_to_status_list(status: self.current_status, user: current_user)
       render json: { status: true, message: 'Success' }
     else
       render json: { status: false, message: 'Error occured' }, status: 400
+    end
+  end
+
+  def update
+    ticket = Ticket.find_by_id(update_params[:id])
+
+    if ticket.blank?
+      render json: { status: false, message: 'No ticket exists' }, status: 400
+    else
+      ticket.current_status = update_params[:current_status].to_i
+      ticket.resolve_eta = Time.now + update_params[:resolve_eta].to_i
+      if ticket.save
+        ticket.add_to_status_list(status: ticket.current_status, user: current_user)
+        render json: { status: true, message: 'Success' }
+      else
+        render json: { status: false, message: 'Error occured' }, status: 400
+      end
     end
   end
 
@@ -31,6 +49,10 @@ class TicketController < ApplicationController
 
   def create_params
     params.permit(:name, :description, :type)
+  end
+
+  def update_params
+    params.permit(:id, :current_status, :resolve_eta)
   end
 
   def valid_ticket_params?

@@ -33,7 +33,7 @@ class TicketsMainView extends React.Component {
       if(this.state.tickets.length > 0)
         view = this.state.tickets.map((ticket) => {
           return (
-            <TicketsItemView data={ticket} />
+            <TicketsItemView data={ticket} currentUser={this.props.currentUser} />
           )
         });
       else
