@@ -23,8 +23,8 @@ class TicketsTopNav extends React.Component {
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span className="glyphicon glyphicon-user"></span><span className="caret"></span></a>
                   <ul className="dropdown-menu">
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Log out</a></li>
+                    <li><a href="#">{this.props.currentUser.name}</a></li>
+                    <li><a href="#" onClick={this.props.handleLogout}>Log out</a></li>
                   </ul>
                 </li>
               </ul>

@@ -24,6 +24,19 @@ class Tickets extends React.Component {
   setPendingTicket() {
     this.setState({ openTicket: false, showResolvedTickets: false, showPendingTickets: true });
   }
+  logoutUser() {
+    $.ajax({
+      url: '/auth/logout',
+      type: 'DELETE',
+      success: (response) => {
+        console.log(response);
+        window.location.href = "/";
+      },
+      error: (resp) => {
+        console.log(resp);
+      }
+    });
+  }
   render() {
     console.log(this.state);
     console.log(this.props);
@@ -37,6 +50,7 @@ class Tickets extends React.Component {
           setPendingTicket={this.setPendingTicket.bind(this)}
           setResolvedTicket={this.setResolvedTicket.bind(this)}
           currentUser={currentUser}
+          handleLogout={this.logoutUser.bind(this)}
         />
         <TicketsMainView
           showTicketForm={this.state.openTicket}
