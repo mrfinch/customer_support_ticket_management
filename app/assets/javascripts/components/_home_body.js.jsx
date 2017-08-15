@@ -3,8 +3,8 @@ class HomeBody extends React.Component {
     return (
       <div className="container">
         <div className="jumbotron">
-          <h1>Support</h1>
-          <p>We are here to help you</p>
+          <h1>Need Support?</h1>
+          <h3>We are here to help you</h3>
         </div>
       </div>
     )

@@ -5,12 +5,20 @@ class TicketController < ApplicationController
 
   def index
     data = if params[:show_pending] == 'true'
-             current_user.pending_tickets
+             if current_user.admin
+               Ticket.pending
+             else
+               current_user.pending_tickets
+             end
            else
-             current_user.resolved_tickets
+             if current_user.admin
+               Ticket.resolved
+             else
+               current_user.resolved_tickets
+             end
            end
 
-    render json: { status: true, message: 'Success', data: Ticket.readable_types(data.limit(params[:limit].to_i).offset(params[:page].to_i)) }
+    render json: { status: true, message: 'Success', data: Ticket.readable_types(data.order(created_at: :desc).limit(params[:limit].to_i).offset(params[:page].to_i)) }
   end
 
   def create
@@ -20,7 +28,7 @@ class TicketController < ApplicationController
     ticket.user = current_user
 
     if ticket.save
-      ticket.add_to_status_list(status: self.current_status, user: current_user)
+      ticket.add_to_status_list(status: ticket.current_status, user: current_user)
       render json: { status: true, message: 'Success' }
     else
       render json: { status: false, message: 'Error occured' }, status: 400
@@ -34,7 +42,7 @@ class TicketController < ApplicationController
       render json: { status: false, message: 'No ticket exists' }, status: 400
     else
       ticket.current_status = update_params[:current_status].to_i
-      ticket.resolve_eta = Time.now + update_params[:resolve_eta].to_i
+      ticket.resolve_eta = Time.now + update_params[:resolve_eta].to_i.days
       if ticket.save
         ticket.add_to_status_list(status: ticket.current_status, user: current_user)
         render json: { status: true, message: 'Success' }

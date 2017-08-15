@@ -7,6 +7,8 @@ class AuthController < ApplicationController
     user = User.new(signup_params)
 
     if user.save
+      # temporary enable confirmation till mail is implemented
+      user.confirm
       render json: { status: true, message: 'Success' }
     else
       render json: { status: true, message: user.errors.full_messages }, status: 400
