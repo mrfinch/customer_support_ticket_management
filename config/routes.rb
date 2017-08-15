@@ -65,6 +65,8 @@ Rails.application.routes.draw do
     delete :logout
   end
 
+  resources :pdf, only: [:index]
+
   root 'home#index'
 
   match '*path' => redirect('/') , via: [:get]

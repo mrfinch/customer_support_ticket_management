@@ -1,0 +1,18 @@
+<table style="width: 80%; margin-top: 20px;" align="center" class="table">
+  <tr>
+    <th>Name</th>
+    <th>Status</th>
+    <th>User</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+  </tr>
+<% @last_month_tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.name %></td>
+      <td><%= ticket.current_status %></td>
+      <td><%= ticket.user.email %></td>
+      <td><%= ticket.created_at %></td>
+      <td><%= ticket.updated_at %></td>
+    </tr>
+<% end %>
+</table>

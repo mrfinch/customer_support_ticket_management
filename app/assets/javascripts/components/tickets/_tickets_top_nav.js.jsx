@@ -4,6 +4,7 @@ class TicketsTopNav extends React.Component {
     let showForm = this.props.openTicket;
     let pending = !showForm ? (this.props.showPendingTickets ? 'active' : '') : ''
     let resolved = !showForm ? (this.props.showPendingTickets ? '' : 'active') : ''
+    let pdfButton = this.props.currentUser.admin ? <a href="/pdf" className="btn btn-success navbar-btn msR" target="_blank">Pdf view</a> : null
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -16,7 +17,8 @@ class TicketsTopNav extends React.Component {
               <li className={resolved} onClick={this.props.setResolvedTicket}><a href="#">Resolved Tickets</a></li>
             </ul>
             <div className="nav navbar-nav navbar-right msR">
-            <button type="submit" className="btn btn-success navbar-btn msR" onClick={this.props.onOpenTicket}>Open ticket</button>
+              {pdfButton}
+              <button type="submit" className="btn btn-success navbar-btn msR" onClick={this.props.onOpenTicket}>Open ticket</button>
               <ul className="nav navbar-nav navbar-right">
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span className="glyphicon glyphicon-user"></span><span className="caret"></span></a>

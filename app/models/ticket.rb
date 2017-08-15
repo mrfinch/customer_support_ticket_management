@@ -19,6 +19,8 @@ class Ticket < ActiveRecord::Base
   belongs_to :user
   has_many :ticket_statuses, foreign_key: :ticket_id
 
+  scope :within_date_range, ->(start_time, end_time) { where(updated_at: (start_time..end_time)) }
+
   def self.readable_types data
     data.map do |d|
       d = d.as_json
